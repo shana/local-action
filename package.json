@@ -1,14 +1,14 @@
 {
-  "name": "@github/local-action",
+  "name": "@sh4na/local-action",
   "description": "Local Debugging for GitHub Actions",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "type": "module",
   "author": "Nick Alteen <ncalteen@github.com>",
   "private": false,
   "homepage": "https://github.com/github/local-action",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/github/local-action.git"
+    "url": "git+https://github.com/shana/local-action.git"
   },
   "bugs": {
     "url": "https://github.com/github/local-action/issues"

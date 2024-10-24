@@ -12,7 +12,8 @@ const empty: EnvMetadata = {
   env: {},
   inputs: {},
   outputs: {},
-  path: ''
+  path: '',
+  workingDirectory: ''
 }
 
 // Prevent output during tests

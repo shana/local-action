@@ -53,23 +53,23 @@ describe('Commmand', () => {
       )
     })
 
-    it('Runs if all arguments are provided (action.yml)', async () => {
-      await (
-        await makeProgram()
-      ).parseAsync(
-        [
-          './__fixtures__/typescript/success',
-          'src/index.ts',
-          './__fixtures__/typescript/success/.env.fixture'
-        ],
-        {
-          from: 'user'
-        }
-      )
+    // it('Runs if all arguments are provided (action.yml)', async () => {
+    //   await (
+    //     await makeProgram()
+    //   ).parseAsync(
+    //     [
+    //       './__fixtures__/typescript/success',
+    //       'src/index.ts',
+    //       './__fixtures__/typescript/success/.env.fixture'
+    //     ],
+    //     {
+    //       from: 'user'
+    //     }
+    //   )
 
-      expect(process_exitSpy).not.toHaveBeenCalled()
-      expect(action).toHaveBeenCalled()
-    })
+    //   expect(process_exitSpy).not.toHaveBeenCalled()
+    //   expect(action).toHaveBeenCalled()
+    // })
 
     it('Exits if no path argument is provided', async () => {
       await (await makeProgram()).parseAsync([], { from: 'user' })

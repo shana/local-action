@@ -40,6 +40,10 @@ export async function action(): Promise<void> {
   console.log()
   console.table([
     {
+      Field: 'Working Directory',
+      Value: EnvMeta.workingDirectory
+    },
+    {
       Field: 'Action Path',
       Value: EnvMeta.actionPath
     },
@@ -96,9 +100,7 @@ export async function action(): Promise<void> {
   // Get the node_modules path, starting with the entrypoint.
   /* istanbul ignore next */
   const dirs =
-    path.dirname(EnvMeta.entrypoint).split('/') || // Unix
-    path.dirname(EnvMeta.entrypoint).split('\\') || // Windows
-    []
+    path.dirname(EnvMeta.entrypoint).replaceAll('\\', '/').split('/') || []
   while (dirs.length > 0) {
     // Check if the current directory has a node_modules directory.
     if (fs.existsSync(path.join(...dirs, 'node_modules'))) break
@@ -127,6 +129,8 @@ export async function action(): Promise<void> {
       CORE_STUBS
     )
 
+    if (EnvMeta.workingDirectory !== '') process.chdir(EnvMeta.workingDirectory)
+
     // ESM actions need to be imported, not required.
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { run } = await import(path.resolve(EnvMeta.entrypoint))
@@ -152,6 +156,8 @@ export async function action(): Promise<void> {
       ),
       CORE_STUBS
     )
+
+    if (EnvMeta.workingDirectory !== '') process.chdir(EnvMeta.workingDirectory)
 
     // CJS actions need to be required, not imported.
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, import/no-dynamic-require

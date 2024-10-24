@@ -9,6 +9,9 @@ export type EnvMetadata = {
   /** Path to the `.env` file */
   dotenvFile: string
 
+  /** Path to the action directory */
+  workingDirectory: string
+
   /** Environment variables */
   env: {
     [key: string]: string | undefined

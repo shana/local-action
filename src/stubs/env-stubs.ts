@@ -11,7 +11,8 @@ export const EnvMeta: EnvMetadata = {
   env: {},
   inputs: {},
   outputs: {},
-  path: ''
+  path: '',
+  workingDirectory: ''
 }
 
 /**
@@ -28,4 +29,5 @@ export function ResetEnvMetadata(): void {
   EnvMeta.inputs = {}
   EnvMeta.outputs = {}
   EnvMeta.path = ''
+  EnvMeta.workingDirectory = ''
 }

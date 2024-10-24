@@ -44,6 +44,7 @@ describe('Command: run', () => {
       EnvMeta.actionPath = `./__fixtures__/typescript-esm/success`
       EnvMeta.dotenvFile = `./__fixtures__/typescript-esm/success/.env.fixture`
       EnvMeta.entrypoint = `./__fixtures__/typescript-esm/success/src/main.ts`
+      EnvMeta.workingDirectory = `.`
 
       await expect(action()).resolves.toBeUndefined()
 
@@ -56,6 +57,7 @@ describe('Command: run', () => {
       EnvMeta.actionPath = `./__fixtures__/typescript-esm/no-import`
       EnvMeta.dotenvFile = `./__fixtures__/typescript-esm/no-import/.env.fixture`
       EnvMeta.entrypoint = `./__fixtures__/typescript-esm/no-import/src/main.ts`
+      EnvMeta.workingDirectory = `.`
 
       await expect(action()).resolves.toBeUndefined()
 
@@ -68,6 +70,7 @@ describe('Command: run', () => {
       EnvMeta.actionPath = `./__fixtures__/typescript-esm/no-export`
       EnvMeta.dotenvFile = `./__fixtures__/typescript-esm/no-export/.env.fixture`
       EnvMeta.entrypoint = `./__fixtures__/typescript-esm/no-export/src/main.ts`
+      EnvMeta.workingDirectory = `.`
 
       await expect(action()).rejects.toThrow(
         `Entrypoint ${EnvMeta.entrypoint} does not export a run() function`
@@ -81,6 +84,7 @@ describe('Command: run', () => {
       EnvMeta.actionPath = `./__fixtures__/javascript/success`
       EnvMeta.dotenvFile = `./__fixtures__/javascript/success/.env.fixture`
       EnvMeta.entrypoint = `./__fixtures__/javascript/success/src/main.js`
+      EnvMeta.workingDirectory = `.`
 
       await expect(action()).resolves.toBeUndefined()
     })
@@ -90,6 +94,7 @@ describe('Command: run', () => {
       EnvMeta.actionPath = `./__fixtures__/javascript/no-import`
       EnvMeta.dotenvFile = `./__fixtures__/javascript/no-import/.env.fixture`
       EnvMeta.entrypoint = `./__fixtures__/javascript/no-import/src/main.js`
+      EnvMeta.workingDirectory = `.`
 
       await expect(action()).resolves.toBeUndefined()
     })
@@ -99,6 +104,7 @@ describe('Command: run', () => {
       EnvMeta.actionPath = `./__fixtures__/javascript/no-export`
       EnvMeta.dotenvFile = `./__fixtures__/javascript/no-export/.env.fixture`
       EnvMeta.entrypoint = `./__fixtures__/javascript/no-export/src/main.js`
+      EnvMeta.workingDirectory = `.`
 
       await expect(action()).rejects.toThrow(
         `Entrypoint ${EnvMeta.entrypoint} does not export a run() function`
@@ -112,6 +118,7 @@ describe('Command: run', () => {
       EnvMeta.actionPath = `./__fixtures__/javascript/success`
       EnvMeta.dotenvFile = `./__fixtures__/javascript/success/.env.fixture`
       EnvMeta.entrypoint = `./__fixtures__/javascript/success/src/main.js`
+      EnvMeta.workingDirectory = `.`
 
       await expect(action()).resolves.toBeUndefined()
 

@@ -89,6 +89,31 @@ export async function makeProgram(): Promise<Command> {
     return dotenvFile
   }
 
+  /**
+   * Checks if the provided working directory is valid
+   *
+   * @param value The working directory
+   * @returns The resolved working directory
+   */
+  function checkWorkingDirectory(value: string): string {
+    const WorkingDirectory: string = path.resolve(value === '' ? '.' : value)
+
+    try {
+      // Confirm the value is a directory
+      if (!fs.statSync(WorkingDirectory).isDirectory())
+        throw new InvalidArgumentError('Working directory must be a directory')
+    } catch (err: any) {
+      if ('code' in err && err.code === 'ENOENT')
+        throw new InvalidArgumentError('Working directory does not exist')
+      else throw new InvalidArgumentError(err.message as string)
+    }
+
+    // Save the action path to environment metadata
+    EnvMeta.workingDirectory = WorkingDirectory
+
+    return WorkingDirectory
+  }
+
   const __dirname = dirname(fileURLToPath(import.meta.url))
 
   program
@@ -108,6 +133,7 @@ export async function makeProgram(): Promise<Command> {
       checkEntrypoint
     )
     .argument('<dotenv file>', 'Path to the local .env file', checkDotenvFile)
+    .argument('<path>', 'Working directory', checkWorkingDirectory)
     .action(async () => {
       await action()
     })
